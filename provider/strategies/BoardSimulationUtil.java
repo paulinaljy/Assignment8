@@ -1,8 +1,8 @@
-package strategies;
+package cs3500.pawnsboard.provider.strategies;
 
-import model.Board;
-import model.Cell;
-import players.Player;
+import cs3500.pawnsboard.provider.model.Board;
+import cs3500.pawnsboard.provider.model.Cell;
+import cs3500.pawnsboard.provider.players.Player;
 
 /**
  * Utility methods to simulate moves on a copy of the board.

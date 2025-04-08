@@ -1,8 +1,8 @@
-package view;
+package cs3500.pawnsboard.provider.view;
 
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import event.PlayerActionListener;
+import cs3500.pawnsboard.provider.event.PlayerActionListener;
 
 /**
  * A graphical view for Pawns Board.

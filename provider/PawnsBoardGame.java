@@ -1,19 +1,21 @@
+package cs3500.pawnsboard.provider;
+
 import java.util.List;
 
-import controller.PawnsBoardController;
-import model.Card;
-import model.Deck;
-import model.DeckReader;
-import players.HumanPlayer;
-import model.ModelActionInterface;
-import model.PawnsBoardModel;
-import players.Playable;
-import players.Player;
-import players.Strategy1Player;
-import players.Strategy2Player;
-import players.Strategy3Player;
-import view.PawnsBoardFrame;
-import view.PawnsView;
+import cs3500.pawnsboard.provider.controller.PawnsBoardController;
+import cs3500.pawnsboard.provider.model.Card;
+import cs3500.pawnsboard.provider.model.Deck;
+import cs3500.pawnsboard.provider.model.DeckReader;
+import cs3500.pawnsboard.provider.players.HumanPlayer;
+import cs3500.pawnsboard.provider.model.ModelActionInterface;
+import cs3500.pawnsboard.provider.model.PawnsBoardModel;
+import cs3500.pawnsboard.provider.players.Playable;
+import cs3500.pawnsboard.provider.players.Player;
+import cs3500.pawnsboard.provider.players.Strategy1Player;
+import cs3500.pawnsboard.provider.players.Strategy2Player;
+import cs3500.pawnsboard.provider.players.Strategy3Player;
+import cs3500.pawnsboard.provider.view.PawnsBoardFrame;
+import cs3500.pawnsboard.provider.view.PawnsView;
 
 /**
  * The class to start the board game.

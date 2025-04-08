@@ -1,6 +1,6 @@
-package strategies;
+package cs3500.pawnsboard.provider.strategies;
 
-import model.GameModel;
+import cs3500.pawnsboard.provider.model.GameModel;
 
 /**
  * The ComputerStrategy interface defines the contract for implementing automated strategies

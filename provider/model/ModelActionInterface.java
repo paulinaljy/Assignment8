@@ -1,7 +1,7 @@
-package model;
+package cs3500.pawnsboard.provider.model;
 
-import players.Player;
-import event.ModelStatusListener;
+import cs3500.pawnsboard.provider.players.Player;
+import cs3500.pawnsboard.provider.event.ModelStatusListener;
 
 /**
  * Interface for a mutable game model with actions and state queries.
@@ -9,7 +9,7 @@ import event.ModelStatusListener;
  * to register model status listeners as well as methods for modifying the game
  * state such as placing a card or passing a turn.
  */
-public interface ModelActionInterface extends ReadonlyPawnsBoardModel {
+public interface ModelActionInterface extends model.ReadonlyPawnsBoardModel {
 
   /**
    * Registers a listener that will be notified whenever the model's status changes.

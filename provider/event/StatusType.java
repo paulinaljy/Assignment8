@@ -1,4 +1,4 @@
-package event;
+package cs3500.pawnsboard.provider.event;
 
 /**
  * Represents the types of status changes that can occur in the game model. This enumeration is used

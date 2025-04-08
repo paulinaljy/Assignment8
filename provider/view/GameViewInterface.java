@@ -1,6 +1,6 @@
-package view;
+package cs3500.pawnsboard.provider.view;
 
-import event.PlayerActionListener;
+import cs3500.pawnsboard.provider.event.PlayerActionListener;
 
 /**
  * Interface for a game view.

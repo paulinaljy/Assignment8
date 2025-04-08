@@ -1,4 +1,4 @@
-package event;
+package cs3500.pawnsboard.provider.event;
 
 /**
  * Interface for objects that want to be notified of player actions.

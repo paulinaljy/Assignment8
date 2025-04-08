@@ -1,4 +1,4 @@
-package model;
+package cs3500.pawnsboard.provider.model;
 
 /**
  * The mutable interface for the Pawns Board game model.

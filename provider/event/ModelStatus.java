@@ -1,4 +1,4 @@
-package event;
+package cs3500.pawnsboard.provider.event;
 
 /**
  * Represents different status changes that can occur in the model.

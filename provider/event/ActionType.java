@@ -1,4 +1,4 @@
-package event;
+package cs3500.pawnsboard.provider.event;
 
 /**
  * Represents the types of actions that a player can perform during the game.

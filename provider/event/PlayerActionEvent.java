@@ -1,4 +1,4 @@
-package cs3500.pawnsboard.bowen.src.event;
+package cs3500.pawnsboard.provider.event;
 
 /**
  * Encapsulates information about a player's action.
@@ -6,7 +6,7 @@ package cs3500.pawnsboard.bowen.src.event;
  */
 public class PlayerActionEvent {
 
-  private final event.ActionType actionType;
+  private final ActionType actionType;
   private final int cardIndex;  // For SELECT_CARD
   private final int row;        // For SELECT_CELL
   private final int col;        // For SELECT_CELL
@@ -34,8 +34,8 @@ public class PlayerActionEvent {
    * @param row        the selected row
    * @param col        the selected column
    */
-  public PlayerActionEvent(event.ActionType actionType, int row, int col) {
-    if (actionType != event.ActionType.SELECT_CELL) {
+  public PlayerActionEvent(ActionType actionType, int row, int col) {
+    if (actionType != ActionType.SELECT_CELL) {
       throw new IllegalArgumentException("Wrong constructor for " + actionType);
     }
     this.actionType = actionType;

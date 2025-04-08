@@ -1,4 +1,4 @@
-package event;
+package cs3500.pawnsboard.provider.event;
 
 /**
  * Interface for objects that want to be notified of model status changes.
@@ -10,5 +10,5 @@ public interface ModelStatusListener {
    *
    * @param event contains the type of change and any associated message
    */
-  void modelStatusChanged(event.ModelStatusEvent event);
+  void modelStatusChanged(ModelStatusEvent event);
 }

@@ -1,4 +1,4 @@
-package event;
+package cs3500.pawnsboard.provider.event;
 
 /**
  * Event fired by the model when its status changes (e.g., turn changes or game ends).
