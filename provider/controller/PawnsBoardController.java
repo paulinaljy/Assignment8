@@ -8,6 +8,7 @@ import cs3500.pawnsboard.provider.model.Card;
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
 import cs3500.pawnsboard.provider.players.Player;
 import cs3500.pawnsboard.provider.view.PawnsView;
+import cs3500.pawnsboard.provider.players.Playable;
 
 /**
  * Controller for a single (RED or BLUE) player in the Pawns Board game.

@@ -1,12 +1,12 @@
-package players;
+package cs3500.pawnsboard.provider.players;
 
-import event.ActionType;
-import event.PlayerActionEvent;
-import event.PlayerActionListener;
-import model.ModelActionInterface;
-import model.GameModel;
-import model.Hand;
-import strategies.MinimaxStrategy;
+import cs3500.pawnsboard.provider.event.ActionType;
+import cs3500.pawnsboard.provider.event.PlayerActionEvent;
+import cs3500.pawnsboard.provider.event.PlayerActionListener;
+import cs3500.pawnsboard.provider.model.ModelActionInterface;
+import cs3500.pawnsboard.provider.model.GameModel;
+import cs3500.pawnsboard.provider.model.Hand;
+import cs3500.pawnsboard.provider.strategies.MinimaxStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

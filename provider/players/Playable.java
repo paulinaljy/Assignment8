@@ -1,6 +1,6 @@
 package cs3500.pawnsboard.provider.players;
 
-import event.PlayerActionListener;
+import cs3500.pawnsboard.provider.event.PlayerActionListener;
 
 /**
  * A Playable represents a participant in the PawnsBoard game. This

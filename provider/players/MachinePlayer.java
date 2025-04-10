@@ -1,8 +1,8 @@
 package cs3500.pawnsboard.provider.players;
 
-import event.PlayerActionEvent;
-import event.PlayerActionListener;
-import event.ActionType;
+import cs3500.pawnsboard.provider.event.PlayerActionEvent;
+import cs3500.pawnsboard.provider.event.PlayerActionListener;
+import cs3500.pawnsboard.provider.event.ActionType;
 
 /**
  * A MachinePlayer that automates moves using a chosen strategy.
