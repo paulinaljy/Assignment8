@@ -1,14 +1,14 @@
-package model;
+package cs3500.pawnsboard.provider.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import players.Player;
-import event.ModelStatus;
-import event.ModelStatusEvent;
-import event.ModelStatusListener;
+import cs3500.pawnsboard.provider.players.Player;
+import cs3500.pawnsboard.provider.event.ModelStatus;
+import cs3500.pawnsboard.provider.event.ModelStatusEvent;
+import cs3500.pawnsboard.provider.event.ModelStatusListener;
 
 /**
  * The model for a game of Pawns Board.

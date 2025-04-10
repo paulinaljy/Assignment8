@@ -1,10 +1,10 @@
-package strategies;
+package cs3500.pawnsboard.provider.strategies;
 
 import java.util.List;
-import model.GameModel;
-import model.Card;
-import model.Hand;
-import players.Player;
+import cs3500.pawnsboard.provider.model.GameModel;
+import cs3500.pawnsboard.provider.model.Card;
+import cs3500.pawnsboard.provider.model.Hand;
+import cs3500.pawnsboard.provider.players.Player;
 
 /**
  * The MaximizeRowScoreStrategy class is an implementation of the ComputerStrategy interface

@@ -1,4 +1,4 @@
-package model;
+package cs3500.pawnsboard.provider.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import players.Player;
+import cs3500.pawnsboard.provider.players.Player;
 
 /**
  * Reads a deck configuration file and returns a list of Card objects for a given owner.

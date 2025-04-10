@@ -1,4 +1,4 @@
-package view;
+package cs3500.pawnsboard.provider.view;
 
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
 import cs3500.pawnsboard.provider.model.Card;

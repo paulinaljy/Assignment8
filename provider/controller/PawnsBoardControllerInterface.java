@@ -1,4 +1,4 @@
-package controller;
+package cs3500.pawnsboard.provider.controller;
 
 
 /**

@@ -1,4 +1,4 @@
-package players;
+package cs3500.pawnsboard.provider.players;
 
 import event.PlayerActionListener;
 

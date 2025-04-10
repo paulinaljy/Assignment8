@@ -1,8 +1,8 @@
-package model;
+package cs3500.pawnsboard.provider.model;
 
 import java.util.Objects;
 
-import players.Player;
+import cs3500.pawnsboard.provider.players.Player;
 
 /**
  * The card for a game of Pawns Board.

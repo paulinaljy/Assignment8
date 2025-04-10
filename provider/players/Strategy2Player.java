@@ -1,34 +1,34 @@
-package players;
+package cs3500.pawnsboard.provider.players;
 
-import event.ActionType;
-import event.PlayerActionEvent;
-import event.PlayerActionListener;
-import model.ModelActionInterface;
-import model.Hand;
-import model.GameModel;
-import strategies.FillFirstStrategy;
+import cs3500.pawnsboard.provider.event.ActionType;
+import cs3500.pawnsboard.provider.event.PlayerActionEvent;
+import cs3500.pawnsboard.provider.event.PlayerActionListener;
+import cs3500.pawnsboard.provider.model.ModelActionInterface;
+import cs3500.pawnsboard.provider.model.Hand;
+import cs3500.pawnsboard.provider.model.GameModel;
+import cs3500.pawnsboard.provider.strategies.ControlBoardStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Strategy 1: Fill First - Places cards in the leftmost available position.
+ * Strategy 2: Fill Most - Places cards in positions with the most pawns.
  */
-public class Strategy1Player implements Playable {
+public class Strategy2Player implements Playable {
   private List<PlayerActionListener> listeners = new ArrayList<>();
   private final ModelActionInterface model;
   private final Player playerColor;
-  private final FillFirstStrategy strategy;
+  private final ControlBoardStrategy strategy;
 
   /**
-   * Construct the player on strategy 1.
+   * Construct the player on strategy 2.
    * @param model given game model.
    * @param playerColor given player color.
    */
-  public Strategy1Player(ModelActionInterface model, Player playerColor) {
+  public Strategy2Player(ModelActionInterface model, Player playerColor) {
     this.model = model;
     this.playerColor = playerColor;
-    this.strategy = new FillFirstStrategy();
+    this.strategy = new ControlBoardStrategy();
   }
 
   @Override
@@ -39,8 +39,8 @@ public class Strategy1Player implements Playable {
       return;
     }
 
-    // Use FillFirstStrategy to determine the move
-    boolean moveMade = strategy.makeMove((GameModel) model);
+    // Use ControlBoardStrategy to determine the move
+    boolean moveMade = strategy.makeMove((GameModel)model);
 
     if (!moveMade) {
       fireActionEvent(new PlayerActionEvent(ActionType.PASS));

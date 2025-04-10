@@ -1,10 +1,10 @@
-package strategies;
+package cs3500.pawnsboard.provider.strategies;
 
 import java.util.List;
-import model.Card;
-import model.GameModel;
-import model.Hand;
-import players.Player;
+import cs3500.pawnsboard.provider.model.Card;
+import cs3500.pawnsboard.provider.model.GameModel;
+import cs3500.pawnsboard.provider.model.Hand;
+import cs3500.pawnsboard.provider.players.Player;
 
 /**
  * A (simplified) minimax strategy that selects the move that minimizes the maximum benefit 

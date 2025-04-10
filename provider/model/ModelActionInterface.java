@@ -9,7 +9,7 @@ import cs3500.pawnsboard.provider.event.ModelStatusListener;
  * to register model status listeners as well as methods for modifying the game
  * state such as placing a card or passing a turn.
  */
-public interface ModelActionInterface extends model.ReadonlyPawnsBoardModel {
+public interface ModelActionInterface extends ReadonlyPawnsBoardModel {
 
   /**
    * Registers a listener that will be notified whenever the model's status changes.

@@ -1,6 +1,6 @@
-package model;
+package cs3500.pawnsboard.provider.model;
 
-import players.Player;
+import cs3500.pawnsboard.provider.players.Player;
 
 /**
  * A cell in the game of Pawns Board.

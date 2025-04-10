@@ -1,7 +1,7 @@
-package model;
+package cs3500.pawnsboard.provider.model;
 
 
-import players.Player;
+import cs3500.pawnsboard.provider.players.Player;
 
 /**
  * The board for a game of Pawns Board.
