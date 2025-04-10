@@ -4,7 +4,6 @@ import cs3500.pawnsboard.provider.event.ActionType;
 import cs3500.pawnsboard.provider.event.PlayerActionEvent;
 import cs3500.pawnsboard.provider.event.PlayerActionListener;
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
-import cs3500.pawnsboard.provider.model.Hand;
 import cs3500.pawnsboard.provider.model.GameModel;
 import cs3500.pawnsboard.provider.strategies.FillFirstStrategy;
 

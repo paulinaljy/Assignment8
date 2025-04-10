@@ -2,8 +2,6 @@ package cs3500.pawnsboard.provider.strategies;
 
 import java.util.List;
 import cs3500.pawnsboard.provider.model.GameModel;
-import cs3500.pawnsboard.provider.model.Card;
-import cs3500.pawnsboard.provider.model.Hand;
 import cs3500.pawnsboard.provider.players.Player;
 
 /**

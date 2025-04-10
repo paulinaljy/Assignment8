@@ -4,7 +4,6 @@ import cs3500.pawnsboard.provider.event.ModelStatusEvent;
 import cs3500.pawnsboard.provider.event.ModelStatusListener;
 import cs3500.pawnsboard.provider.event.PlayerActionEvent;
 import cs3500.pawnsboard.provider.event.PlayerActionListener;
-import cs3500.pawnsboard.provider.model.Card;
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
 import cs3500.pawnsboard.provider.players.Player;
 import cs3500.pawnsboard.provider.view.PawnsView;

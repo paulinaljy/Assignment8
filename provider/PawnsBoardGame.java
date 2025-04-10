@@ -3,12 +3,9 @@ package cs3500.pawnsboard.provider;
 import java.util.List;
 
 import cs3500.pawnsboard.provider.controller.PawnsBoardController;
-import cs3500.pawnsboard.provider.model.Card;
-import cs3500.pawnsboard.provider.model.Deck;
 import cs3500.pawnsboard.provider.model.DeckReader;
 import cs3500.pawnsboard.provider.players.HumanPlayer;
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
-import cs3500.pawnsboard.provider.model.PawnsBoardModel;
 import cs3500.pawnsboard.provider.players.Playable;
 import cs3500.pawnsboard.provider.players.Player;
 import cs3500.pawnsboard.provider.players.Strategy1Player;
