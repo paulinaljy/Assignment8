@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import cs3500.pawnsboard.provider.players.Player;
-
 /**
  * Reads a deck configuration file and returns a list of Card objects for a given owner.
  * Format per card:

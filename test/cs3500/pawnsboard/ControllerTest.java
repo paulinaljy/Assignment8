@@ -1,4 +1,4 @@
-package cs3500.pawnsboard;
+package cs3500.pawnsboard.test.cs3500.pawnsboard;
 
 import org.junit.Before;
 import org.junit.Test;

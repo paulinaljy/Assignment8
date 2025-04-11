@@ -1,6 +1,5 @@
 package cs3500.pawnsboard.provider.model;
 
-import cs3500.pawnsboard.provider.players.Player;
 import cs3500.pawnsboard.provider.event.ModelStatusListener;
 
 /**

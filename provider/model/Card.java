@@ -1,79 +1,47 @@
 package cs3500.pawnsboard.provider.model;
 
-import java.awt.*;
-import java.util.List;
-
-import cs3500.pawnsboard.model.GameCard;
-import cs3500.pawnsboard.model.Position;
-import cs3500.pawnsboard.provider.players.Player;
-
-public class Card implements MockCardInterface {
-  private final GameCard adaptee;
-  private final boolean[][] influenceGrid;
-
+public interface Card {
   /**
-   * Initializes a GameCard with a name, cost, value, and influence grid.
+   * Gets the name of the card.
    *
-   * @param influenceGrid list of relative positions representing cells influenced
+   * @return the name of the card
    */
-  public Card(GameCard adaptee, boolean[][] influenceGrid) {
-    if (adaptee == null) {
-      throw new IllegalArgumentException("GameCard Adaptee cannot be null");
-    }
-    this.adaptee = adaptee;
-    this.influenceGrid = convertToGrid(adaptee.getPositions());
-  }
+  String getName();
 
   /**
-   * Converts the list of relative positions from (2,2) to booleans marked as true, indicating they
-   * are influence cells.
-   * @param positions list of influenced cell positions
-   * @return a 2D array of booleans
+   * Gets the cost of the card.
+   *
+   * @return the cost of the card
    */
-  private boolean[][] convertToGrid(List<Position> positions) {
-    boolean[][] grid = new boolean[5][5];
-    for (Position pos : positions) {
-      int row = pos.getRowDelta() + 2;
-      int col = pos.getColDelta() + 2;
-      if (row >= 0 && row < 5 && col >= 0 && col < 5) {
-        grid[row][col] = true;
-      }
-    }
-    return grid;
-  }
+  int getCost();
 
-  @Override
-  public String getName() {
-    return adaptee.getName();
-  }
+  /**
+   * Gets the value of the card.
+   *
+   * @return the value of the card
+   */
+  int getValue();
 
-  @Override
-  public int getCost() {
-    return adaptee.getCost();
-  }
+  /**
+   * Gets the owner of the card.
+   *
+   * @return the owner of the card
+   */
+  Player getOwner();
 
-  @Override
-  public int getValue() {
-    return adaptee.getValue();
-  }
+  /**
+   * Get the influence grid of the card.
+   * @return the influence grid of the card.
+   */
+  boolean[][] getInfluenceGrid();
 
-  @Override
-  public Player getOwner() {
-    Color playerColor = adaptee.getOwnedColor();
-    if (playerColor.equals(Color.red)) {
-      return Player.RED;
-    } else {
-      return Player.BLUE;
-    }
-  }
-
-  @Override
-  public boolean[][] getInfluenceGrid() {
-    return this.influenceGrid;
-  }
-
-  @Override
-  public void applyInfluence(Board board, int placedRow, int placedCol, Player currentPlayer) { /////////////
-
-  }
+  /**
+   * Applies the influence from the card.
+   *
+   * @param board the board where this method will take place
+   * @param placedRow the row the card will be placed in
+   * @param placedCol the column the card will be placed in
+   * @param currentPlayer the player placing the card
+   */
+  void applyInfluence(Board board, int placedRow, int placedCol, Player currentPlayer);
 }

@@ -1,14 +1,14 @@
 package cs3500.pawnsboard.adapter;
 
+import cs3500.pawnsboard.provider.event.PlayerActionEvent;
 import cs3500.pawnsboard.view.ViewActions;
 import cs3500.pawnsboard.provider.event.ActionType;
-import cs3500.pawnsboard.provider.event.PlayerActionEvent;
 import cs3500.pawnsboard.provider.event.PlayerActionListener;
 
-public class OtherToOurControllerAdapter implements PlayerActionListener {
+public class ViewActionsAdapter implements PlayerActionListener {
   private final ViewActions adaptee;
 
-  public OtherToOurControllerAdapter(ViewActions adaptee) {
+  public ViewActionsAdapter(ViewActions adaptee) {
     this.adaptee = adaptee;
   }
 

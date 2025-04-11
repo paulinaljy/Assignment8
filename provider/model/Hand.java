@@ -1,31 +1,22 @@
 package cs3500.pawnsboard.provider.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Hand implements MockHandInterface {
-  private final List<Card> playersHand;
+public interface Hand {
+  void addCard(Card c);
 
-  public Hand() {
-    this.playersHand = new ArrayList<Card>();
-  }
-  @Override
-  public void addCard(Card c) {
-    this.playersHand.add(c);
-  }
+  /**
+   * Removes a card from this hand (if present).
+   */
+  void removeCard(Card c);
 
-  @Override
-  public void removeCard(Card c) {
-    this.playersHand.remove(c);
-  }
+  /**
+   * Gets all cards in this hand as a list.
+   */
+  List<Card> getCards();
 
-  @Override
-  public List<Card> getCards() {
-    return new ArrayList<Card>(this.playersHand);
-  }
-
-  @Override
-  public int size() {
-    return this.playersHand.size();
-  }
+  /**
+   * Returns the number of cards in the hand.
+   */
+  int size();
 }

@@ -7,11 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JOptionPane;
 
-import cs3500.pawnsboard.provider.event.PlayerActionListener;
 import cs3500.pawnsboard.provider.event.PlayerActionEvent;
+import cs3500.pawnsboard.provider.event.PlayerActionListener;
 import cs3500.pawnsboard.provider.event.ActionType;
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
-import cs3500.pawnsboard.provider.players.Player;
+import cs3500.pawnsboard.provider.model.Player;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyAdapter;

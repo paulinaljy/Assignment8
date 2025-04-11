@@ -1,71 +1,59 @@
 package cs3500.pawnsboard.provider.model;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+public interface Board {
+  /**
+   * Checks if the given row and column indices are valid for this board.
+   *
+   * @param row the row index
+   * @param col the column index
+   * @return true if the cell exists within the board, false otherwise.
+   */
+  boolean isValidCell(int row, int col);
 
-import cs3500.pawnsboard.model.Cell;
-import cs3500.pawnsboard.provider.players.Player;
+  /**
+   * Returns the cell at the specified row and column.
+   *
+   * @param row the row index
+   * @param col the column index
+   * @return the Cell object at that position.
+   * @throws IndexOutOfBoundsException if the cell indices are out of bounds.
+   */
+  BoardCell getCell(int row, int col);
 
-public class Board implements MockBoardInterface {
-  private final List<ArrayList<BoardCell>> boardGrid;
-  final int height;
-  final int width;
+  /**
+   * Initializes the board's starting state by placing one pawn in each cell of the
+   * first column for the Red player and one pawn in each cell of the last column for the
+   * Blue player.
+   *
+   * @param red  the Red player
+   * @param blue the Blue player
+   */
+  void initializeInitialPawns(Player red, Player blue);
 
-  public Board(int width, int height) {
-    if (height <= 0) {
-      throw new IllegalArgumentException("Height of board must be greater than 0");
-    }
-    if (width <= 0 || width % 2 == 0) {
-      throw new IllegalArgumentException("Width of board must be odd and greater than 0");
-    }
-    this.height = height;
-    this.width = width;
-    this.boardGrid = new ArrayList<ArrayList<BoardCell>>();
-  }
+  /**
+   * Returns the number of rows in the board.
+   *
+   * @return the number of rows.
+   */
+  int getRows();
 
-  @Override
-  public boolean isValidCell(int row, int col) {
-    return row >= 0 && row < height && col >= 0 && col < width;
-  }
+  /**
+   * Returns the number of columns in the board.
+   *
+   * @return the number of columns.
+   */
+  int getCols();
 
-  @Override
-  public BoardCell getCell(int row, int col) {
-    return boardGrid.get(row).get(col);
-  }
-
-  @Override
-  public void initializeInitialPawns(Player red, Player blue) {
-    for (int r = 0; r < height; r++) {
-      boardGrid.get(r).get(0).setPawns(1, red);
-      boardGrid.get(r).get(width - 1).setPawns(1, blue);
-    }
-  }
-
-  @Override
-  public int getRows() {
-    return this.height;
-  }
-
-  @Override
-  public int getCols() {
-    return this.width;
-  }
-
-  @Override
-  public void placeCard(int row, int col, Card card, Player currentPlayer) {
-
-    BoardCell cell = this.boardGrid.get(row).get(col);
-    if (cell.hasCard()) {
-      throw new IllegalArgumentException("Cannot place card: Cell already has card");
-    }
-
-    if (cell.getOwner() != currentPlayer || cell.getPawnCount() < card.getCost()) {
-      throw new IllegalArgumentException("Cannot place card.");
-    }
-
-    cell.setCard(card);
-
-    card.applyInfluence(this, row, col, currentPlayer);
-  }
+  /**
+   * Attempts to place a card on the specified cell. The cell must be owned by the current player
+   * and contain enough pawns to cover the card's cost. Once the card is placed, the pawns in the
+   * cell are removed and the card's influence is applied.
+   *
+   * @param row the row index where the card is to be placed
+   * @param col the column index where the card is to be placed
+   * @param card the card to be placed
+   * @param currentPlayer the player who is placing the card
+   * @throws IllegalArgumentException if the cell is invalid or doesn't meet placement requirements
+   */
+  void placeCard(int row, int col, Card card, Player currentPlayer);
 }

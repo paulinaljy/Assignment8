@@ -1,83 +1,85 @@
 package cs3500.pawnsboard.provider.model;
 
-import cs3500.pawnsboard.provider.players.Player;
+public interface BoardCell {
+  /**
+   * Checks if the cell is empty.
+   *
+   * @return whether the cell is empty
+   */
+  boolean isEmpty();
 
-public class BoardCell implements MockCellInterface {
-  private int pawnsCount;
-  private Player owner;
-  private Card card;
+  /**
+   * Checks if the cell has a card.
+   *
+   * @return whether the cell has a card
+   */
+  boolean hasCard();
 
-  public BoardCell() {
-    this.pawnsCount = 0;
-    this.owner = null;
-    this.card = null;
-  }
+  /**
+   * Gets the number of pawns on the cell.
+   *
+   * @return the number of pawns on the cell
+   */
+  int getPawnCount();
 
-  @Override
-  public boolean isEmpty() {
-    return false;
-  }
+  /**
+   * Gets the owner of the cell. The owner is whoever has their card or pawn on the cell.
+   *
+   * @return the owner of the cell
+   */
+  Player getOwner();
 
-  @Override
-  public boolean hasCard() {
-    if (card == null) {
-      return false;
-    }
-    return true;
-  }
+  /**
+   * Places a card on the cell. When a card is placed, all pawns are removed.
+   *
+   * @param card the card placed on the cell
+   * @throws IllegalArgumentException if the card being placed is null
+   */
+  void setCard(Card card);
 
-  @Override
-  public int getPawnCount() {
-    return this.pawnsCount;
-  }
+  /**
+   * Gets the card in the cell. This card can be null if there are no cards in this cell.
+   *
+   * @return the card in the cell
+   */
+  Card getCard();
 
-  @Override
-  public Player getOwner() {
-    return this.owner;
-  }
+  /**
+   * Sets the number of pawns in the cell. The number cannot be greater than 3.
+   *
+   * @param pawnCount the number of pawns to be set in the cell
+   * @param owner the owner of the pawns
+   * @throws IllegalStateException if the cell already contains a card
+   * @throws IllegalArgumentException if the number of pawns is negative or greater than 3
+   */
+  void setPawns(int pawnCount, Player owner);
 
-  @Override
-  public void setCard(Card card) {
-    this.card = card;
-    this.pawnsCount = 0;
-    this.owner = card.getOwner();
-  }
+  /**
+   * Increments the pawn count by one if the current owner already owns the cell. If the cell is
+   * empty or owned by the opponent, it resets to one pawn with the current owner.
+   *
+   * @param currentOwner the player currently incrementing the pawn count
+   * @throws IllegalStateException if there is already a card in the cell
+   */
+  void incrementPawnCount(Player currentOwner);
 
-  @Override
-  public Card getCard() {
-    return this.card;
-  }
+  /**
+   * Clears the cell.
+   */
+  void clear();
 
-  @Override
-  public void setPawns(int pawnCount, Player owner) {
-    this.pawnsCount = pawnCount;
-    this.owner = owner;
-  }
+  /**
+   * Adds the specified number of pawns to the cell.
+   *
+   * @param i the number of pawns to add; can be positive or negative
+   */
+  void addPawns(int i);
 
-  @Override
-  public void incrementPawnCount(Player currentOwner) {
-    if (this.owner == currentOwner) {
-      this.pawnsCount += 1;
-    } else {
-      this.owner = currentOwner;
-      this.pawnsCount = 1;
-    }
-  }
-
-  @Override
-  public void clear() {
-    this.pawnsCount = 0;
-    this.owner = null;
-    this.card = null;
-  }
-
-  @Override
-  public void addPawns(int i) {
-    this.pawnsCount = this.pawnsCount + i;
-  }
-
-  @Override
-  public void setOwner(Player player) {
-    this.owner = player;
-  }
+  /**
+   * Sets the owner of the cell. The owner is the player who has influence over the cell, such as
+   * through card placement or pawns.
+   *
+   * @param player the player to be set as the owner of the cell
+   */
+  void setOwner(Player player);
 }

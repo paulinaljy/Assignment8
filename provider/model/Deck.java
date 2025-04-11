@@ -1,28 +1,20 @@
 package cs3500.pawnsboard.provider.model;
 
-import java.util.List;
+public interface Deck {
+  /**
+   * Draws the next card from the deck.
+   *
+   * @return If no cards remain, returns null.
+   */
+  Card drawCard();
 
-public class Deck implements MockDeckInterface {
-  private final List<Card> playersDeck;
+  /**
+   * Gets the total number of cards in this deck.
+   */
+  int size();
 
-  public Deck(List<Card> playersDeck) {
-    if (playersDeck == null) {
-      throw new IllegalArgumentException("Deck cannot be null");
-    }
-    this.playersDeck = playersDeck;
-  }
-  @Override
-  public Card drawCard() {
-    return this.playersDeck.get(0);
-  }
-
-  @Override
-  public int size() {
-    return this.playersDeck.size();
-  }
-
-  @Override
-  public int cardsRemaining() {
-    return this.playersDeck.size();
-  }
+  /**
+   * Returns how many cards remain to be drawn.
+   */
+  int cardsRemaining();
 }

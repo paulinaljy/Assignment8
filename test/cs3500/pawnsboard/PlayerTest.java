@@ -1,4 +1,4 @@
-package cs3500.pawnsboard;
+package cs3500.pawnsboard.test.cs3500.pawnsboard;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import cs3500.pawnsboard.MockMachinePlayer;
+import cs3500.pawnsboard.MockStrategy;
+import cs3500.pawnsboard.MockViewActions;
 import cs3500.pawnsboard.controller.DeckConfiguration;
 import cs3500.pawnsboard.controller.PawnsBoardDeckConfig;
 import cs3500.pawnsboard.model.GameCard;

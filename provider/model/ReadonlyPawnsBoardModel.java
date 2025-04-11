@@ -1,7 +1,5 @@
 package cs3500.pawnsboard.provider.model;
 
-import cs3500.pawnsboard.provider.players.Player;
-
 /**
  * A read-only interface for the Pawns Board game model.
  * Provides only observation methods.
