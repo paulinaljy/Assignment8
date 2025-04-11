@@ -50,26 +50,34 @@ public class BoardCell implements MockCellInterface {
 
   @Override
   public void setPawns(int pawnCount, Player owner) {
-
+    this.pawnsCount = pawnCount;
+    this.owner = owner;
   }
 
   @Override
   public void incrementPawnCount(Player currentOwner) {
-
+    if (this.owner == currentOwner) {
+      this.pawnsCount += 1;
+    } else {
+      this.owner = currentOwner;
+      this.pawnsCount = 1;
+    }
   }
 
   @Override
   public void clear() {
-
+    this.pawnsCount = 0;
+    this.owner = null;
+    this.card = null;
   }
 
   @Override
   public void addPawns(int i) {
-
+    this.pawnsCount = this.pawnsCount + i;
   }
 
   @Override
   public void setOwner(Player player) {
-
+    this.owner = player;
   }
 }

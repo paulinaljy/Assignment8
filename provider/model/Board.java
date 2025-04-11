@@ -12,7 +12,7 @@ public class Board implements MockBoardInterface {
   final int height;
   final int width;
 
-  public Board(List<List<Cell>> boardGrid, int height, int width) {
+  public Board(int width, int height) {
     if (height <= 0) {
       throw new IllegalArgumentException("Height of board must be greater than 0");
     }
@@ -54,9 +54,6 @@ public class Board implements MockBoardInterface {
 
   @Override
   public void placeCard(int row, int col, Card card, Player currentPlayer) {
-    if (!isValidCell(row, col)) {
-      throw new IllegalArgumentException("Invalid cell coordinates");
-    }
 
     BoardCell cell = this.boardGrid.get(row).get(col);
     if (cell.hasCard()) {
