@@ -1,0 +1,80 @@
+**Introduction:**
+This document outlines the design for a user-player interface capable of allowing both human and AI
+players to interact with the game model `PawnsBoardModel`. The interface is built to support a
+Command-Line Interface (CLI), a Graphical User Interface (GUI), and AI player integration, ensuring
+flexibility and ease of use.
+
+**Architecture Components:**
+1. Model
+The core game logic is implemented within `PawnsBoardModel` and its dependencies (`Board`, `Card`,
+`Cell`, `Hand`, etc.). The interface will act as a bridge between user/AI input and this model to
+update the game state.
+
+2. View
+`PawnsBoardView` provides a textual representation of the board and game state. This will be
+extended for human interaction in CLI and GUI modes.
+
+3. Controller
+The controller manages input (human or AI), validates moves, executes actions, and updates the
+model state. It controls the turn-based flow of actions.
+
+4. Interface Modes
+    - CLI (Command-Line Interface): A menu-driven interaction for human users through text
+      commands.
+    - GUI (Graphical User Interface): A visual implementation for human users using clickable
+      components.
+    - AI Integration: A system for AI players to automatically decide and execute moves based on the
+      game state.
+
+**Design Details:**
+1. CLI-Based Interface
+- Structure:
+    - Interaction occurs through text-based commands entered by the human player.
+    - Options include: placing a card, passing a turn, viewing the current board, or viewing the
+      player's hand.
+
+- Flow:
+    - At each turn, the current state of the board and the player's hand is displayed.
+    - The user inputs commands such as `Place row col CardName` to interact with the game.
+    - The opponent (other human or AI) then performs its move.
+
+- Output:
+    - Textual feedback such as the updated board state or errors from invalid actions.
+
+2. GUI-Based Interface
+- Structure:
+    - A grid of buttons represents the game board, showing pawns, cards, and empty cells.
+    - A player hand display allows selection of cards to place.
+    - Score and status panels show the game's progress.
+
+- Flow:
+    - Players interact with the board by clicking buttons corresponding to cells.
+    - A dialog or side panel is used to select a card from the player's hand.
+    - The updated board and scores are displayed after each turn.
+
+- Output:
+    - Real-time updates to the graphical board and the player's available cards.
+
+3. AI Integration
+The AI acts as a substitute for a human player and interacts directly with the model.
+- Input State:
+    - The AI queries the board, hand, and game rules through `PawnsBoardModel` and dependent
+      classes.
+
+- Decision-Making:
+    - Uses heuristics to evaluate possible moves, prioritizing scoring opportunities and blocking
+      opponents.
+
+- Flow:
+    - The AI decides its move and uses methods such as `placeCard` or `passTurn` to execute its
+      action.
+
+**Flow of Interaction**
+1. Human Player:
+    - Inputs commands in CLI or performs actions in the GUI to place cards, pass turns, or view game
+      state.
+    - Receives feedback on validity of moves and state updates.
+
+2. AI Player:
+    - Evaluates possible moves using provided game APIs.
+    - Efficiently executes actions to maximize its score while minimizing the opponent's chances.
