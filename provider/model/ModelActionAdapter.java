@@ -28,24 +28,12 @@ public class ModelActionAdapter implements ModelActionInterface {
 
   @Override
   public void placeCard(int row, int col, Card card) {
-    int cardIdx = model.getCurrentPlayer().getHand().indexOf(card);
-    model.placeCardInPosition(cardIdx, row, col);
-    this.notifyTurn();
+    // not needed for view
   }
 
   @Override
   public void passTurn() {
-    model.pass();
-    this.notifyTurn();
-  }
-
-  private void notifyTurn() {
-    Player currentPlayer = Player.RED;
-    if (model.getCurrentPlayerID() == 2) {
-      currentPlayer = Player.BLUE;
-    }
-    observer.modelStatusChanged(new ModelStatusEvent(ModelStatus.TURN_CHANGED,
-              "Turn changed to " + currentPlayer));
+    // not needed for view
   }
 
   @Override

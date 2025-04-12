@@ -37,4 +37,9 @@ public class MachinePlayerAdapter implements GamePlayer {
     machinePlayer.subscribe(observer);
     this.listener = new PlayerActionListenerAdapter(observer);
   }
+
+  @Override
+  public String toString() {
+    return "Player " + this.getPlayerID();
+  }
 }

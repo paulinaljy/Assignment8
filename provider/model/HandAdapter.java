@@ -4,11 +4,15 @@ import cs3500.pawnsboard.model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HandAdapter implements Hand {
   private final Player player;
 
   public HandAdapter(Player player) {
+    if (player == null) {
+      throw new IllegalArgumentException("Player cannot be null");
+    }
     this.player = player;
   }
 
@@ -24,6 +28,12 @@ public class HandAdapter implements Hand {
 
   @Override
   public boolean containsCard(Card card) {
+    for (GameCard c : player.getHand()) {
+      Card cardAdapter = new CardAdapter(c);
+      if (cardAdapter.equals(card)) {
+        return true;
+      }
+    }
     return false;
   }
 
@@ -44,5 +54,22 @@ public class HandAdapter implements Hand {
   @Override
   public Hand copy() {
     return new HandAdapter(player);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof HandAdapter)) {
+      return false;
+    }
+    HandAdapter that = (HandAdapter) other;
+    return this.player == that.player;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(player);
   }
 }

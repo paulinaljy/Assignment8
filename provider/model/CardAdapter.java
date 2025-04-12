@@ -1,6 +1,7 @@
 package cs3500.pawnsboard.provider.model;
 
 import java.awt.*;
+import java.util.Objects;
 
 import cs3500.pawnsboard.model.GameCard;
 import cs3500.pawnsboard.model.Position;
@@ -9,6 +10,9 @@ public class CardAdapter implements Card {
   private final GameCard card;
 
   public CardAdapter(GameCard card) {
+    if (card == null) {
+      throw new IllegalArgumentException("Card cannot be null");
+    }
     this.card = card;
   }
   @Override
@@ -53,5 +57,22 @@ public class CardAdapter implements Card {
   @Override
   public Card copy() {
     return new CardAdapter(card);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof CardAdapter)) {
+      return false;
+    }
+    CardAdapter that = (CardAdapter) other;
+    return this.card == that.card;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(card);
   }
 }

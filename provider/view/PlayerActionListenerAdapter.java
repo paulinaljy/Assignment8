@@ -8,8 +8,8 @@ import cs3500.pawnsboard.provider.event.PlayerActionListener;
 public class PlayerActionListenerAdapter implements PlayerActionListener {
   private final ViewActions observer;
 
-  public PlayerActionListenerAdapter(ViewActions adaptee) {
-    this.observer = adaptee;
+  public PlayerActionListenerAdapter(ViewActions observer) {
+    this.observer = observer;
   }
 
   @Override

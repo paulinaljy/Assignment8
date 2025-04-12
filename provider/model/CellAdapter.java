@@ -1,6 +1,7 @@
 package cs3500.pawnsboard.provider.model;
 
 import java.awt.*;
+import java.util.Objects;
 
 import cs3500.pawnsboard.model.GameCard;
 
@@ -8,6 +9,9 @@ public class CellAdapter implements Cell {
   private final cs3500.pawnsboard.model.Cell cell;
 
   public CellAdapter(cs3500.pawnsboard.model.Cell cell) {
+    if (cell == null) {
+      throw new IllegalArgumentException("Cell cannot be null");
+    }
     this.cell = cell;
   }
 
@@ -18,7 +22,7 @@ public class CellAdapter implements Cell {
 
   @Override
   public void placeCard(Card card) {
-    // not supported for view
+    // not needed for view
   }
 
   @Override
@@ -58,11 +62,28 @@ public class CellAdapter implements Cell {
 
   @Override
   public void addPawns(int i) {
-    // not supported for view
+    // not needed for view
   }
 
   @Override
   public void removePawn() {
-    // not supported for view
+    // not needed for view
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof CellAdapter)) {
+      return false;
+    }
+    CellAdapter that = (CellAdapter) other;
+    return this.cell == that.cell;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(cell);
   }
 }

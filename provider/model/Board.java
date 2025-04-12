@@ -1,5 +1,9 @@
 package cs3500.pawnsboard.provider.model;
 
+/**
+ * Represents the behaviors of a Board, including getting the width and height, cell at a specific
+ * row and column, placing card, and checking whether a cell is valid.
+ */
 public interface Board {
   /**
    * Returns the number of rows in the board.

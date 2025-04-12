@@ -2,6 +2,9 @@ package cs3500.pawnsboard.provider.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import cs3500.pawnsboard.model.GameCard;
 
 public class BoardAdapter implements Board {
   private final List<ArrayList<cs3500.pawnsboard.model.Cell>> board;
@@ -45,6 +48,24 @@ public class BoardAdapter implements Board {
 
   @Override
   public void placeCard(int row, int col, Card card, Player currentPlayer) {
-    // not supported for view
+    // not needed for view
   }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      return true;
+    }
+    if (!(other instanceof BoardAdapter)) {
+      return false;
+    }
+    BoardAdapter that = (BoardAdapter) other;
+    return this.board == that.board;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(board);
+  }
+
 }
