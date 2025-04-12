@@ -3,12 +3,11 @@ package cs3500.pawnsboard.provider.model;
 import java.awt.*;
 
 import cs3500.pawnsboard.model.GameCard;
-import cs3500.pawnsboard.model.Cell;
 
-public class CellAdapter implements BoardCell {
-  private final Cell cell;
+public class CellAdapter implements Cell {
+  private final cs3500.pawnsboard.model.Cell cell;
 
-  public CellAdapter(Cell cell) {
+  public CellAdapter(cs3500.pawnsboard.model.Cell cell) {
     this.cell = cell;
   }
 

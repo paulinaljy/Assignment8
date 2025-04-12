@@ -18,7 +18,7 @@ public interface Board {
    * @return the Cell object at that position.
    * @throws IndexOutOfBoundsException if the cell indices are out of bounds.
    */
-  BoardCell getCell(int row, int col);
+  Cell getCell(int row, int col);
 
   /**
    * Initializes the board's starting state by placing one pawn in each cell of the

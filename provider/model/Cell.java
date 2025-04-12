@@ -1,6 +1,6 @@
 package cs3500.pawnsboard.provider.model;
 
-public interface BoardCell {
+public interface Cell {
   /**
    * Checks if the cell is empty.
    *

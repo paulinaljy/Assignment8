@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import cs3500.pawnsboard.MockMachinePlayer;
+import cs3500.pawnsboard.MockModelPlace;
+import cs3500.pawnsboard.MockPawnsBoardView;
+import cs3500.pawnsboard.MockStrategy;
 import cs3500.pawnsboard.controller.DeckConfiguration;
 import cs3500.pawnsboard.controller.PawnsBoardController;
 import cs3500.pawnsboard.controller.PawnsBoardDeckConfig;

@@ -3,12 +3,10 @@ package cs3500.pawnsboard.provider.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import cs3500.pawnsboard.model.Cell;
-
 public class BoardAdapter implements Board {
-  private final List<ArrayList<Cell>> board;
+  private final List<ArrayList<cs3500.pawnsboard.model.Cell>> board;
 
-  public BoardAdapter(List<ArrayList<Cell>> board) {
+  public BoardAdapter(List<ArrayList<cs3500.pawnsboard.model.Cell>> board) {
     if (board == null) {
       throw new IllegalArgumentException("Model cannot be null");
     }
@@ -21,7 +19,7 @@ public class BoardAdapter implements Board {
   }
 
   @Override
-  public BoardCell getCell(int row, int col) {
+  public Cell getCell(int row, int col) {
     return new CellAdapter(board.get(row).get(col));
   }
 
