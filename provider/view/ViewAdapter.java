@@ -48,7 +48,7 @@ public class ViewAdapter implements PawnsBoardView {
   private String getGameOverMessage() {
     int player1Score = model.getPlayerTotalScore(1);
     int player2Score = model.getPlayerTotalScore(2);
-    String message = "Game Over! Scores - RED: " + player1Score + " BLUE: " + player2Score;
+    String message = "Game Over! Scores - RED: " + player1Score + " BLUE: " + player2Score + " ";
 
     if (player1Score > player2Score) {
       message += "RED wins!";

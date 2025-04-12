@@ -36,12 +36,8 @@ public interface Card {
   boolean[][] getInfluenceGrid();
 
   /**
-   * Applies the influence from the card.
-   *
-   * @param board the board where this method will take place
-   * @param placedRow the row the card will be placed in
-   * @param placedCol the column the card will be placed in
-   * @param currentPlayer the player placing the card
+   * Returns a copy of the card.
+   * @return a copy of the game card
    */
-  void applyInfluence(Board board, int placedRow, int placedCol, Player currentPlayer);
+  Card copy();
 }

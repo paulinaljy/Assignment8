@@ -23,6 +23,11 @@ public class HandAdapter implements Hand {
   }
 
   @Override
+  public boolean containsCard(Card card) {
+    return false;
+  }
+
+  @Override
   public List<Card> getCards() {
     List<Card> newCards = new ArrayList<Card>();
     for (GameCard card : player.getHand()) {
@@ -34,5 +39,10 @@ public class HandAdapter implements Hand {
   @Override
   public int size() {
     return player.getHandSize();
+  }
+
+  @Override
+  public Hand copy() {
+    return new HandAdapter(player);
   }
 }

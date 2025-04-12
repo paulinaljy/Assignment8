@@ -14,18 +14,23 @@ public class BoardAdapter implements Board {
   }
 
   @Override
-  public boolean isValidCell(int row, int col) {
+  public boolean isValidPlacement(int row, int col) {
     return row >= 0 && row < board.size() && col >= 0 && col < board.get(0).size();
+  }
+
+  @Override
+  public int calculateRowScore(Player player, int row) {
+    return 0;
+  }
+
+  @Override
+  public Board copy() {
+    return new BoardAdapter(board);
   }
 
   @Override
   public Cell getCell(int row, int col) {
     return new CellAdapter(board.get(row).get(col));
-  }
-
-  @Override
-  public void initializeInitialPawns(Player red, Player blue) {
-    // not supported for view
   }
 
   @Override

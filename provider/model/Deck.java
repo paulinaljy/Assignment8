@@ -1,5 +1,7 @@
 package cs3500.pawnsboard.provider.model;
 
+import java.util.List;
+
 public interface Deck {
   /**
    * Draws the next card from the deck.
@@ -9,12 +11,30 @@ public interface Deck {
   Card drawCard();
 
   /**
-   * Gets the total number of cards in this deck.
+   * Returns whether this deck is empty.
+   * @return boolean whether this deck is empty
    */
-  int size();
+  boolean isEmpty();
+
+  /**
+   * Shuffles this deck.
+   */
+  void shuffle();
 
   /**
    * Returns how many cards remain to be drawn.
    */
-  int cardsRemaining();
+  int remainingCards();
+
+  /**
+   * Returns the cards in this deck.
+   * @return list of cards
+   */
+  List<Card> getCards();
+
+  /**
+   * Returns a copy of this deck.
+   * @return copy of deck
+   */
+  Deck copy();
 }

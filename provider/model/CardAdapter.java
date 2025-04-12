@@ -51,7 +51,7 @@ public class CardAdapter implements Card {
   }
 
   @Override
-  public void applyInfluence(Board board, int placedRow, int placedCol, Player currentPlayer) {
-    // not needed for view
+  public Card copy() {
+    return new CardAdapter(card);
   }
 }

@@ -17,6 +17,16 @@ public class CellAdapter implements Cell {
   }
 
   @Override
+  public void placeCard(Card card) {
+    // not supported for view
+  }
+
+  @Override
+  public Cell copy() {
+    return new CellAdapter(cell);
+  }
+
+  @Override
   public boolean hasCard() {
     return cell.isGameCard();
   }
@@ -38,11 +48,6 @@ public class CellAdapter implements Cell {
   }
 
   @Override
-  public void setCard(Card card) {
-    // not supported
-  }
-
-  @Override
   public Card getCard() {
     if (cell.isGameCard()) {
       return new CardAdapter((GameCard)cell);
@@ -52,27 +57,12 @@ public class CellAdapter implements Cell {
   }
 
   @Override
-  public void setPawns(int pawnCount, Player owner) {
-    // not supported for view
-  }
-
-  @Override
-  public void incrementPawnCount(Player currentOwner) {
-    // not supported for view
-  }
-
-  @Override
-  public void clear() {
-    // not supported for view
-  }
-
-  @Override
   public void addPawns(int i) {
     // not supported for view
   }
 
   @Override
-  public void setOwner(Player player) {
+  public void removePawn() {
     // not supported for view
   }
 }
