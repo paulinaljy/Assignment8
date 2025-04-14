@@ -1,5 +1,9 @@
 package cs3500.pawnsboard.provider.model;
 
+/**
+ * Represents the behaviors of a Cell, including getting the card, owner, and pawn count of the
+ * cell, checking if the cell is empty, has a card, and adding and removing pawns.
+ */
 public interface Cell {
   /**
    * Gets the card in the cell. This card can be null if there are no cards in this cell.

@@ -1,5 +1,9 @@
 package cs3500.pawnsboard.provider.model;
 
+/**
+ * Represents the behaviors of a Card, including getting the name, cost, value, owner, and influence
+ * grid of the card.
+ */
 public interface Card {
   /**
    * Gets the name of the card.

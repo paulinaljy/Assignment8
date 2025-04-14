@@ -181,4 +181,3 @@ public class HandPanel extends JPanel {
     repaint();
   }
 }
-

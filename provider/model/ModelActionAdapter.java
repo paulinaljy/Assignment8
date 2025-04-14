@@ -9,10 +9,23 @@ import cs3500.pawnsboard.provider.event.ModelStatus;
 import cs3500.pawnsboard.provider.event.ModelStatusEvent;
 import cs3500.pawnsboard.provider.event.ModelStatusListener;
 
+/**
+ * Represents an adapter for the model used in the provider view. This class implements the
+ * provider's generic ModelActionInterface interface, while composing our pawns board model
+ * implementation. This adapter has behaviors including getting the board, current player, opponent,
+ * hand, width and height of the board, winner of the game, and calculating the score.
+ *
+ * <p>Note: Some methods (e.g., {@code placeCard} {@code passTurn} {@code gameStart}) are not
+ * implemented since they are not required for view operations.
+ */
 public class ModelActionAdapter implements ModelActionInterface {
   private final QueensBlood model;
   private ModelStatusListener observer;
 
+  /**
+   * Initializes a ModelActionAdapter with our QueensBlood model.
+   * @param model our model used in the game
+   */
   public ModelActionAdapter(QueensBlood model) {
     if (model == null) {
       throw new IllegalArgumentException("Model cannot be null");
@@ -33,7 +46,7 @@ public class ModelActionAdapter implements ModelActionInterface {
 
   @Override
   public void passTurn() {
-    // not needed for view
+    model.pass();
   }
 
   @Override

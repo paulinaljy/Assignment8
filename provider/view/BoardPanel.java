@@ -61,30 +61,30 @@ public class BoardPanel extends JPanel {
         if (actionListener != null) {
           int cellWidth = getWidth() / (model.getColumnCount() + 2);
           int cellHeight = getHeight() / model.getRowCount();
-          
+
           int col = (e.getX() / cellWidth) - 1;
           int row = e.getY() / cellHeight;
-          
-          if (row >= 0 && row < model.getRowCount() 
-              && col >= 0 && col < model.getColumnCount()) {
+
+          if (row >= 0 && row < model.getRowCount()
+                  && col >= 0 && col < model.getColumnCount()) {
             if (model.isGameOver()) {
               try {
                 model.placeCard(0, 0, null);
               } catch (IllegalStateException ex) {
                 actionListener.playerActionPerformed(
-                  new PlayerActionEvent(ActionType.PASS));
+                        new PlayerActionEvent(ActionType.PASS));
               }
               return;
             }
             if (model.getCurrentPlayer() != playerColor) {
               actionListener.playerActionPerformed(
-                new PlayerActionEvent(ActionType.PASS));
+                      new PlayerActionEvent(ActionType.PASS));
               return;
             }
             selectedRow = row;
             selectedCol = col;
             actionListener.playerActionPerformed(
-              new PlayerActionEvent(ActionType.SELECT_CELL, row, col));
+                    new PlayerActionEvent(ActionType.SELECT_CELL, row, col));
             repaint();
           }
         }
@@ -139,7 +139,7 @@ public class BoardPanel extends JPanel {
           bg = new Color(180, 180, 180); // neutral gray
         }
 
-        // If this cell is selected, change its color 
+        // If this cell is selected, change its color
         if (r == selectedRow && c == selectedCol) {
           bg = bg.brighter();
         }

@@ -85,6 +85,7 @@ public class PawnsBoardModel implements QueensBlood {
     this.isGameStarted();
     if (this.isGameOver()) {
       observer1.processGameOver();
+      observer2.processGameOver();
     }
     this.turn = (turn + 1) % 2;
     this.drawNextCard();

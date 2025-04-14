@@ -4,11 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import cs3500.pawnsboard.model.GameCard;
-
+/**
+ * Represents an adapter for a board used in the provider view. This class implements the provider's
+ * generic Board interface, while composing our model implementation of the board, which is a list
+ * of rows of our board Cells. This adapter has behaviors including getting width and height of the
+ * board, getting cells at specific locations of the board, checking if a position is valid, and
+ * calculating row scores.
+ *
+ * <p>Note: Some methods (e.g., {@code placeCard}) are not implemented since they are
+ * not required for view operations.
+ */
 public class BoardAdapter implements Board {
   private final List<ArrayList<cs3500.pawnsboard.model.Cell>> board;
 
+  /**
+   * Initializes a BoardAdapter with our board used in the game.
+   * @param board an List of rows of Cells used in the game
+   */
   public BoardAdapter(List<ArrayList<cs3500.pawnsboard.model.Cell>> board) {
     if (board == null) {
       throw new IllegalArgumentException("Model cannot be null");

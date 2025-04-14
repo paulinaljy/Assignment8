@@ -2,6 +2,10 @@ package cs3500.pawnsboard.provider.model;
 
 import java.util.List;
 
+/**
+ * Represents the behaviors of a Deck, including drawing a card, checking if it's empty, shuffling
+ * the deck, getting the deck and remaining cards.
+ */
 public interface Deck {
   /**
    * Draws the next card from the deck.

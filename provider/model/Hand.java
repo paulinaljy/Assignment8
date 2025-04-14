@@ -2,6 +2,10 @@ package cs3500.pawnsboard.provider.model;
 
 import java.util.List;
 
+/**
+ * Represents the behaviors of a Hand, including getting the cards in the hand, adding and removing
+ * a card, checking whether the hand contains a card, and getting the size of the hand.
+ */
 public interface Hand {
   /**
    * Gets all cards in this hand as a list.

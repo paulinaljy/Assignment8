@@ -6,9 +6,20 @@ import java.util.Objects;
 import cs3500.pawnsboard.model.GameCard;
 import cs3500.pawnsboard.model.Position;
 
+/**
+ * Represents an adapter for a card used in the provider view. This class implements the provider's
+ * generic Card interface, while composing our model implementation of a card, which is a GameCard.
+ * This adapter has behaviors including getting name, cost, value, owner, and influence grid of the
+ * card.
+ *
+ */
 public class CardAdapter implements Card {
   private final GameCard card;
 
+  /**
+   * Initializes a CardAdapter with our GameCard.
+   * @param card our GameCard used in the game
+   */
   public CardAdapter(GameCard card) {
     if (card == null) {
       throw new IllegalArgumentException("Card cannot be null");

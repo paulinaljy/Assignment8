@@ -6,9 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents an adapter for a hand used in the provider view. This class implements the provider's
+ * generic Hand interface, while composing our model implementation of a player. This adapter has
+ * behaviors including checking if this hand contains a card, getting the cards in this hand, and
+ * getting the size of the hand.
+ *
+ * <p>Note: Some methods (e.g., {@code addCard} {@code removeCard}) are not implemented since they
+ * are not required for view operations.
+ */
 public class HandAdapter implements Hand {
   private final Player player;
 
+  /**
+   * Initializes a HandAdapter with our Player.
+   * @param player our player used in the game
+   */
   public HandAdapter(Player player) {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null");
