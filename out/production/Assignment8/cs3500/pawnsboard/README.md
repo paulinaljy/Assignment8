@@ -14,6 +14,8 @@ FEATURES THAT DON'T WORK/BUGS:
 REASON:
 In our view implementation, we only allow selecting cells/cards if the controller indicates it's their turn. 
 However, in our provider's view implementation, they don't seem to have a feature that checks if view selection should be enabled.
+So we can't write an adapter because our provider's view seems to be missing this game logic itself 
+so we have no mechanism to enforce turn-based restrictions through just adaptation.
 
 RUNNING THE GAME:
 To run the main() method in PawnsBoardGame, 6 string arguments must be entered:
