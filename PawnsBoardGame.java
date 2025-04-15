@@ -17,7 +17,6 @@ import cs3500.pawnsboard.player.MachinePlayer;
 import cs3500.pawnsboard.provider.model.ModelActionAdapter;
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
 import cs3500.pawnsboard.provider.model.Player;
-import cs3500.pawnsboard.provider.players.MachinePlayerAdapter;
 import cs3500.pawnsboard.provider.view.ViewAdapter;
 import cs3500.pawnsboard.strategy.ControlBoard;
 import cs3500.pawnsboard.strategy.FillFirst;
@@ -41,33 +40,14 @@ public final class PawnsBoardGame {
    */
   public static void main(String[] args) throws IOException {
     PawnsBoardBuilder builder = new PawnsBoardBuilder();
-    String p1DeckPath = "";
-    String p2DeckPath = "";
-    String player1Type = "";
-    String player2Type = "";
-    for (int i = 0; i < args.length; i++) {
-      switch (i) {
-        case 0:
-          p1DeckPath = args[0];
-          break;
-        case 1:
-          p2DeckPath = args[1];
-          break;
-        case 2:
-          player1Type = args[2];
-          break;
-        case 3:
-          player2Type = args[3];
-          break;
-        case 4:
-          builder.setWidth(getArgumentValue(args[4], DEFAULT_WIDTH));
-          break;
-        case 5:
-          builder.setHeight(getArgumentValue(args[5], DEFAULT_HEIGHT));
-          break;
-        default: // no default
-      }
-    }
+    String p1DeckPath = getArgument(args, 0, "");
+    String p2DeckPath = getArgument(args, 1, "");
+    String player1Type = getArgument(args, 2, "");
+    String player2Type = getArgument(args, 3, "");
+    builder.setWidth(getArgumentValue(getArgument(args, 4, Integer.toString(DEFAULT_WIDTH)),
+            DEFAULT_WIDTH));
+    builder.setHeight(getArgumentValue(getArgument(args, 5,
+                    Integer.toString(DEFAULT_HEIGHT)), DEFAULT_HEIGHT));
     try {
       QueensBlood model1 = builder.build();
       ModelActionInterface model2 = new ModelActionAdapter(model1);
@@ -82,9 +62,6 @@ public final class PawnsBoardGame {
       view2.setLocation(view1.getX() + view1.getWidth(), view1.getY());
       GamePlayer player1 = getGamePlayer(player1Type, model1, 1);
       GamePlayer player2 = getGamePlayer(player2Type, model1, 2);
-      if (!player2.isHumanPlayer()) {
-        player2 = new MachinePlayerAdapter(player2);
-      }
       PawnsBoardPlayerController control1 = new PawnsBoardPlayerController(model1, player1, view1);
       PawnsBoardPlayerController control2 = new PawnsBoardPlayerController(model1, player2,
               new ViewAdapter(view2, model1));
@@ -93,6 +70,21 @@ public final class PawnsBoardGame {
       control1.itsYourTurn();
     } catch (Exception e) {
       System.out.print(e.getMessage());
+    }
+  }
+
+  /**
+   * Returns the argument based on the given arguments, argument number, and default value.
+   * @param args arguments given in main method
+   * @param argNum argument number
+   * @param defaultValue default value
+   * @return argument
+   */
+  private static String getArgument(String[] args, int argNum, String defaultValue) {
+    if (argNum < args.length) {
+      return args[argNum];
+    } else {
+      return defaultValue;
     }
   }
 

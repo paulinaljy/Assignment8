@@ -5,8 +5,6 @@ import java.awt.*;
 import cs3500.pawnsboard.model.GameCard;
 import cs3500.pawnsboard.model.QueensBlood;
 import cs3500.pawnsboard.model.ReadOnlyCell;
-import cs3500.pawnsboard.provider.event.ModelStatus;
-import cs3500.pawnsboard.provider.event.ModelStatusEvent;
 import cs3500.pawnsboard.provider.event.ModelStatusListener;
 
 /**
