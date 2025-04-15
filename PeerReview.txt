@@ -1,0 +1,50 @@
+DESIGN CRITIQUE
+The overall design of the codebase was very tightly coupled and leaked implementation details, as
+many of the interface methods returned concrete classes. For example, we were initially provided
+with view files that required the use of objects such as Card, Cell, Board, and Hand, but were not
+given any behavioral definitions or interfaces for these objects. Additionally, the notification
+system for the view was also tightly coupled with a specific java swing listener event
+(PlayerActionEvent and ModelStatusEvent). This made it challenging for us to implement the model
+behaviors and notification system needed to implement their view. As a result, for the model, we had
+to request those interfaces separately. Even when they were provided, the methods in the interfaces
+included both read-only observations and unnecessary mutable behaviors for the view.
+
+In general, we were able to reuse a lot of our code but we did struggle a lot with the differing
+data types in their model design. For example, we had Player objects that stored player hands, while
+they had Player enums and a separate Hand object. This forced us to create multiple adapters—one for
+each object (e.g., Cell, Card, Hand, Board)—as well as an adapter to bridge our player action
+notification system with theirs.
+
+The interface ModelActionInterface could also have been better designed. For instance, it included
+two canPlace methods with different parameters, which was initially confusing for us. Another design
+issue was the inclusion of DeckReader in the model package. While we did not rely on their way to
+read files, the model's role in general should be solely to represent and maintain the integrity of
+program state—reading files should be out of its scope.
+
+IMPLEMENTATION CRITIQUE
+From an implementation perspective, the view was built to take in a mutable model interface rather
+than a read-only one, which is not ideal. As a result, we had to implement or stub out all methods
+in ModelActionInterface, even though the view only required observation behaviors. Furthermore, some
+methods in the view, particularly paintComponent in BoardPanel and HandPanel, were excessively long
+(over 70 lines) which made the code harder to read and maintain. As a result, we had to ask our
+providers to revise parts of their code for clarity and better design.
+
+DOCUMENTATION CRITIQUE
+In terms of documentation, the original codebase was generally well-documented, and we were able to
+understand the main components and structure. However, more specificity would have been helpful,
+such as clearer descriptions of interface behaviors and documentation of when exceptions like
+IllegalArgumentException or IllegalStateException might be thrown. The newly requested interfaces
+lacked JavaDoc entirely, leaving us to infer intended functionality. There was also no documentation
+for the coordinate system used in the grid, which made it unclear whether it was 0-indexed or
+1-indexed.
+
+DESIGN/CODE LIMITATIONS AND SUGGESTIONS
+To improve the design and usability of the codebase, we suggest that the view should depend on a
+read-only interface to prevent unintended mutations. Additionally, because the notification system
+of the view was tightly coupled with a specific java swing listener event, the view implementation
+was limited to a java swing in order to trigger events. To reduce coupling, the observer
+implementation should use a more generic design. In addition, coupling can also be reduced by
+defining interfaces that expose only the necessary behaviors of non-value classes like Card, Cell,
+Board, and Hand, allowing for more modular and flexible development.
+
+

@@ -9,11 +9,11 @@ import java.awt.FontMetrics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import cs3500.pawnsboard.provider.event.PlayerActionEvent;
-import cs3500.pawnsboard.provider.model.Card;
 import cs3500.pawnsboard.provider.model.ModelActionInterface;
 import cs3500.pawnsboard.provider.model.Player;
+import cs3500.pawnsboard.provider.model.Card;
 import cs3500.pawnsboard.provider.event.PlayerActionListener;
+import cs3500.pawnsboard.provider.event.PlayerActionEvent;
 import cs3500.pawnsboard.provider.event.ActionType;
 
 import javax.swing.JPanel;
@@ -81,10 +81,17 @@ public class BoardPanel extends JPanel {
                       new PlayerActionEvent(ActionType.PASS));
               return;
             }
-            selectedRow = row;
-            selectedCol = col;
-            actionListener.playerActionPerformed(
-                    new PlayerActionEvent(ActionType.SELECT_CELL, row, col));
+            if (row == selectedRow && col == selectedCol) {
+              selectedRow = -1;  // Deselect if same cell
+              selectedCol = -1;
+              actionListener.playerActionPerformed(
+                      new PlayerActionEvent(ActionType.SELECT_CELL, -1, -1));
+            } else {
+              selectedRow = row;
+              selectedCol = col;
+              actionListener.playerActionPerformed(
+                      new PlayerActionEvent(ActionType.SELECT_CELL, row, col));
+            }
             repaint();
           }
         }
@@ -104,96 +111,139 @@ public class BoardPanel extends JPanel {
     int rows = model.getRowCount();
     int cols = model.getColumnCount();
 
-    // Draw each row from top to bottom
+    // Process each row
     for (int r = 0; r < rows; r++) {
-      int redRowScore = model.calculateRowScore(Player.RED, r);
-      int blueRowScore = model.calculateRowScore(Player.BLUE, r);
-      if (redRowScore > blueRowScore) {
-        g2.setColor(Color.RED);
-      } else {
-        g2.setColor(Color.BLACK);
-      }
-      g2.drawString(String.valueOf(redRowScore),
-              this.cell_width / 2, r * cell_height + cell_height / 2);
+      // Draw the scores for this row (to the left and right)
+      drawRowScores(g2, r, cols);
 
-      if (redRowScore < blueRowScore) {
+      // Draw each cell in the row
+      for (int c = 0; c < cols; c++) {
+        drawCell(g2, r, c);
+      }
+    }
+  }
+
+  /**
+   * Draws the row scores for both players.
+   * Red score is drawn on the left and Blue on the right.
+   */
+  private void drawRowScores(Graphics2D g2, int row, int totalCols) {
+    int redRowScore = model.calculateRowScore(Player.RED, row);
+    int blueRowScore = model.calculateRowScore(Player.BLUE, row);
+
+    // Set and draw red score
+    g2.setColor(redRowScore > blueRowScore ? Color.RED : Color.BLACK);
+    g2.drawString(String.valueOf(redRowScore),
+            cell_width / 2, row * cell_height + cell_height / 2);
+
+    // Set and draw blue score
+    g2.setColor(redRowScore < blueRowScore ? Color.BLUE : Color.BLACK);
+    g2.drawString(String.valueOf(blueRowScore),
+            cell_width * (totalCols + 1) + (cell_width / 2),
+            row * cell_height + cell_height / 2);
+  }
+
+  /**
+   * Draws an individual cell at the given row and column.
+   * This includes the cell background, any pawn graphics,
+   * any card information, and finally the border.
+   */
+  private void drawCell(Graphics2D g2, int row, int col) {
+    // Calculate the top-left corner of the cell
+    int x = (col + 1) * cell_width;
+    int y = row * cell_height;
+
+    // Determine the cell's background color based on its owner
+    Color bg = getCellBackgroundColor(row, col);
+    // If the cell is selected, brighten the background
+    if (row == selectedRow && col == selectedCol) {
+      bg = bg.brighter();
+    }
+
+    // Fill cell background
+    g2.setColor(bg);
+    g2.fillRect(x, y, cell_width, cell_height);
+
+    // Draw pawns inside the cell, if any
+    drawPawnInCell(g2, row, col, x, y);
+
+    // Draw a card in the cell, if present
+    drawCardInCell(g2, row, col, x, y);
+
+    // Draw cell border
+    g2.setColor(Color.GRAY);
+    g2.drawRect(x, y, cell_width, cell_height);
+  }
+
+  /**
+   * Determines the background color for a cell based on its owner.
+   */
+  private Color getCellBackgroundColor(int row, int col) {
+    Player owner = model.getBoard().getCell(row, col).getOwner();
+    if (owner == Player.RED) {
+      return new Color(255, 200, 200); // pinkish
+    } else if (owner == Player.BLUE) {
+      return new Color(200, 200, 255); // light blue
+    } else {
+      return new Color(180, 180, 180); // neutral gray
+    }
+  }
+
+  /**
+   * Draws a pawn (as a circle with a number inside) if there is at least one pawn on the cell.
+   */
+  private void drawPawnInCell(Graphics2D g2, int row, int col, int x, int y) {
+    int pawnCount = model.getBoard().getCell(row, col).getPawnCount();
+    if (pawnCount > 0) {
+      // Determine the pawn color based on its owner
+      Player pawnOwner = model.getBoard().getCell(row, col).getOwner();
+      if (pawnOwner == Player.RED) {
+        g2.setColor(Color.RED);
+      } else if (pawnOwner == Player.BLUE) {
         g2.setColor(Color.BLUE);
       } else {
         g2.setColor(Color.BLACK);
       }
-      g2.drawString(String.valueOf(blueRowScore),
-              this.cell_width * (model.getColumnCount() + 1) + (this.cell_width / 2),
-              r * cell_height + cell_height / 2);
 
-      for (int c = 0; c < cols; c++) {
-        int x = (c + 1) * cell_width;
-        int y = r * cell_height;
+      // Define the size and position for the pawn circle
+      int circleSize = 30;
+      int centerX = x + cell_width / 2 - circleSize / 2;
+      int centerY = y + cell_height / 2 - circleSize / 2;
+      g2.fillOval(centerX, centerY, circleSize, circleSize);
 
-        Color bg;
-        Player owner = model.getBoard().getCell(r, c).getOwner();
-        if (owner == Player.RED) {
-          bg = new Color(255, 200, 200); // pinkish
-        } else if (owner == Player.BLUE) {
-          bg = new Color(200, 200, 255); // light blue
-        } else {
-          bg = new Color(180, 180, 180); // neutral gray
-        }
-
-        // If this cell is selected, change its color
-        if (r == selectedRow && c == selectedCol) {
-          bg = bg.brighter();
-        }
-
-        g2.setColor(bg);
-        g2.fillRect(x, y, cell_width, cell_height);
-
-        // Pawns as circles
-        int pawnCount = model.getBoard().getCell(r, c).getPawnCount();
-        if (pawnCount > 0) {
-          Player pawnOwner = model.getBoard().getCell(r, c).getOwner();
-          if (pawnOwner == Player.RED) {
-            g2.setColor(Color.RED);
-          }
-          else if (pawnOwner == Player.BLUE) {
-            g2.setColor(Color.BLUE);
-          }
-          else {
-            g2.setColor(Color.BLACK);
-          }
-          int circleSize = 30;
-          int centerX = x + cell_width / 2 - circleSize / 2;
-          int centerY = y + cell_height / 2 - circleSize / 2;
-          g2.fillOval(centerX, centerY, circleSize, circleSize);
-
-          g2.setColor(Color.WHITE);
-          String pStr = String.valueOf(pawnCount);
-          FontMetrics fm = g2.getFontMetrics();
-          int txtW = fm.stringWidth(pStr);
-          int txtH = fm.getAscent();
-          g2.drawString(pStr, centerX + (circleSize - txtW) / 2,
-                  centerY + (circleSize + txtH) / 2 - 2);
-        }
-
-        Card card = model.getCardAt(r, c);
-        if (card != null) {
-          g2.setColor(Color.BLACK);
-          String valStr = String.valueOf(card.getValue());
-          Font oldFont = g2.getFont();
-          g2.setFont(oldFont.deriveFont(24f));
-          FontMetrics fm = g2.getFontMetrics();
-          int txtW = fm.stringWidth(valStr);
-          int txtH = fm.getAscent();
-          int strX = x + (cell_width - txtW) / 2;
-          int strY = y + (cell_height + txtH) / 2 - 4;
-          g2.drawString(valStr, strX, strY);
-          g2.setFont(oldFont);
-        }
-
-        g2.setColor(Color.GRAY);
-        g2.drawRect(x, y, cell_width, cell_height);
-      }
+      // Draw the pawn count in white, centered in the circle
+      g2.setColor(Color.WHITE);
+      String pStr = String.valueOf(pawnCount);
+      FontMetrics fm = g2.getFontMetrics();
+      int txtW = fm.stringWidth(pStr);
+      int txtH = fm.getAscent();
+      g2.drawString(pStr, centerX + (circleSize - txtW) / 2,
+              centerY + (circleSize + txtH) / 2 - 2);
     }
   }
+
+  /**
+   * Draws a card's value in the cell if a card is present.
+   */
+  private void drawCardInCell(Graphics2D g2, int row, int col, int x, int y) {
+    Card card = model.getCardAt(row, col);
+    if (card != null) {
+      g2.setColor(Color.BLACK);
+      String valStr = String.valueOf(card.getValue());
+      // Temporarily set a larger font size for the card's value
+      Font oldFont = g2.getFont();
+      g2.setFont(oldFont.deriveFont(24f));
+      FontMetrics fm = g2.getFontMetrics();
+      int txtW = fm.stringWidth(valStr);
+      int txtH = fm.getAscent();
+      int strX = x + (cell_width - txtW) / 2;
+      int strY = y + (cell_height + txtH) / 2 - 4;
+      g2.drawString(valStr, strX, strY);
+      // Restore the previous font
+      g2.setFont(oldFont);
+    }
+  }
+
 
   /**
    * To de select a cell.

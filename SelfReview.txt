@@ -1,0 +1,38 @@
+LEARNINGS AND RETROSPECT
+Having seen our provider’s design of the Pawns board game, where they had separate Board, Cell, and
+Card objects, we realized that their approach better follows the Single Responsibility Principle
+from SOLID. In our implementation, we didn’t have a dedicated Board class but instead, our
+PawnsBoardModel directly stored a list of rows of Cell objects and handled most of the board-related
+responsibilities. This made our model less modular and harder to manage.
+Additionally, our current GameCard class implements both Cell and Card interfaces, even though
+conceptually, a card is not a type of cell. If we were to redo this assignment, we would refactor
+our design to separate these responsibilities more cleanly. We would create a separate Board class
+to encapsulate the grid and pawn management, and define a separate interface for GameCard that
+doesn’t inherit from Cell. This would lead to a clearer, more maintainable architecture and a design
+that better reflects the real-world distinctions between these components.
+
+LESSONS LEARNED
+One of the main lessons we learned from the provider’s code was the importance of designing for
+flexibility and abstraction. Their implementation was very tightly coupled and did not follow the
+Dependency Inversion Principle from SOLID, as many parts of the main model and view were directly
+dependent on the concrete implementations of objects like Card, Cell, and Board, rather than on
+abstractions. As a result, it was difficult for us to adapt their view without having knowledge of
+the behaviors of these objects. Our experience working with their code made us realize the
+importance of ensuring that details depend on abstractions, rather than concrete implementations
+of objects.
+
+EXPERIENCE WITH PROVIDERS
+We did not have a great experience working with our providers, mainly because of unresponsiveness in
+communication. When they first sent their code, we were missing key files for us to understand their
+code, including their README file and screenshots of their GUI view. Additionally, we noticed that
+their model and view implementation depended on concrete implementations of objects (Card, Cell,
+Board, Hand, and Deck). Consequently, we had to request interfaces with the behaviors of these
+objects. However, our provider was very unresponsive to this request and did not provide these files
+until 4 days later.
+
+After adapting their view, we also realized that two methods in their view implementations were 70+
+lines long. We had to request that they refactor these methods to be under 50 lines to improve
+readability and maintainability. Although they eventually complied, the slow response time and lack
+of initial clarity made collaboration challenging.
+
+

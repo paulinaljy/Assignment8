@@ -69,25 +69,25 @@ public final class PawnsBoardGame {
       }
     }
     try {
-      QueensBlood model = builder.build();
-      ModelActionInterface model2 = new ModelActionAdapter(model);
+      QueensBlood model1 = builder.build();
+      ModelActionInterface model2 = new ModelActionAdapter(model1);
       File p1config = new File(p1DeckPath);
       File p2config = new File(p2DeckPath);
       List<GameCard> p1Deck = new PawnsBoardDeckConfig().loadDeckConfig(new FileReader(p1config));
       List<GameCard> p2Deck = new PawnsBoardDeckConfig().loadDeckConfig(new FileReader(p2config));
-      model.startGame(p1Deck, p2Deck, 5, false);
-      PawnsBoardFrame view1 = new PawnsBoardFrame(model, 1);
+      model1.startGame(p1Deck, p2Deck, 5, false);
+      PawnsBoardFrame view1 = new PawnsBoardFrame(model1, 1);
       cs3500.pawnsboard.provider.view.PawnsBoardFrame view2 =
               new cs3500.pawnsboard.provider.view.PawnsBoardFrame(model2, Player.BLUE);
       view2.setLocation(view1.getX() + view1.getWidth(), view1.getY());
-      GamePlayer player1 = getGamePlayer(player1Type, model, 1);
-      GamePlayer player2 = getGamePlayer(player2Type, model, 2);
+      GamePlayer player1 = getGamePlayer(player1Type, model1, 1);
+      GamePlayer player2 = getGamePlayer(player2Type, model1, 2);
       if (!player2.isHumanPlayer()) {
         player2 = new MachinePlayerAdapter(player2);
       }
-      PawnsBoardPlayerController control1 = new PawnsBoardPlayerController(model, player1, view1);
-      PawnsBoardPlayerController control2 = new PawnsBoardPlayerController(model, player2,
-              new ViewAdapter(view2, model));
+      PawnsBoardPlayerController control1 = new PawnsBoardPlayerController(model1, player1, view1);
+      PawnsBoardPlayerController control2 = new PawnsBoardPlayerController(model1, player2,
+              new ViewAdapter(view2, model1));
       control1.playGame();
       control2.playGame();
       control1.itsYourTurn();
